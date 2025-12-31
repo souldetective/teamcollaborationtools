@@ -1,0 +1,8 @@
+/* Admin UI styling for Branding & Theme Settings */
+.atbs-links-repeater { margin-top: 8px; }
+.atbs-link-row { display: grid; grid-template-columns: 1fr 1fr auto auto auto; gap: 6px; align-items: center; margin-bottom: 6px; }
+.atbs-link-row input { width: 100%; }
+.atbs-link-row .button { padding: 4px 8px; }
+.atbs-media-field .preview { margin-bottom: 8px; }
+.atbs-media-field .placeholder { display: inline-block; padding: 8px 10px; background: #f5f5f5; border: 1px dashed #ccc; }
+.atbs-color-field { width: 120px; }

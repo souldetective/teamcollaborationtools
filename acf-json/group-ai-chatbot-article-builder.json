@@ -1,0 +1,1413 @@
+{
+    "key": "group_ai_chatbot_article_builder",
+    "title": "AI Chatbot Article Builder",
+    "fields": [
+        {
+            "key": "field_article_sections",
+            "label": "Article Sections",
+            "name": "article_sections",
+            "type": "flexible_content",
+            "layouts": [
+                {
+                    "key": "layout_hero_section",
+                    "name": "hero_section",
+                    "label": "Hero Section",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_hero_title",
+                            "label": "Hero Title",
+                            "name": "hero_title",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_hero_intro",
+                            "label": "Hero Intro",
+                            "name": "hero_intro",
+                            "type": "textarea",
+                            "new_lines": "br"
+                        },
+                        {
+                            "key": "field_hero_ctas",
+                            "label": "Hero CTAs",
+                            "name": "hero_ctas",
+                            "type": "repeater",
+                            "button_label": "Add CTA",
+                            "sub_fields": [
+                                {
+                                    "key": "field_cta_label",
+                                    "label": "CTA Label",
+                                    "name": "cta_label",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "field_cta_url",
+                                    "label": "CTA URL",
+                                    "name": "cta_url",
+                                    "type": "url"
+                                }
+                            ]
+                        },
+                        {
+                            "key": "field_hero_section_section_background",
+                            "label": "Section Background",
+                            "name": "section_background",
+                            "type": "color_picker",
+                            "instructions": "Override the background for this module.",
+                            "return_format": "string"
+                        },
+                        {
+                            "key": "field_hero_section_section_text_color",
+                            "label": "Section Text Color",
+                            "name": "section_text_color",
+                            "type": "color_picker",
+                            "instructions": "Override the text color for this module.",
+                            "return_format": "string"
+                        }
+                    ]
+                },
+                {
+                    "key": "layout_featured_grid",
+                    "name": "featured_grid",
+                    "label": "Featured Grid",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_featured_overall_title",
+                            "label": "Overall Title",
+                            "name": "featured_overall_title",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_featured_icon",
+                            "label": "Featured Icon",
+                            "name": "featured_icon",
+                            "type": "image",
+                            "return_format": "array",
+                            "preview_size": "thumbnail"
+                        },
+                        {
+                            "key": "field_featured_description",
+                            "label": "Featured Description",
+                            "name": "featured_description",
+                            "type": "wysiwyg",
+                            "toolbar": "basic",
+                            "media_upload": 0
+                        },
+                        {
+                            "key": "field_featured_cards",
+                            "label": "Featured Cards",
+                            "name": "featured_cards",
+                            "type": "repeater",
+                            "button_label": "Add Card",
+                            "sub_fields": [
+                                {
+                                    "key": "field_featured_card_icon",
+                                    "label": "Card Icon",
+                                    "name": "card_icon",
+                                    "type": "image",
+                                    "return_format": "array",
+                                    "preview_size": "thumbnail"
+                                },
+                                {
+                                    "key": "field_featured_card_title",
+                                    "label": "Card Title",
+                                    "name": "card_title",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "field_featured_card_description",
+                                    "label": "Card Description",
+                                    "name": "card_description",
+                                    "type": "wysiwyg",
+                                    "toolbar": "basic",
+                                    "media_upload": 0
+                                }
+                            ]
+                        },
+                        {
+                            "key": "field_featured_section_background",
+                            "label": "Section Background",
+                            "name": "section_background",
+                            "type": "color_picker",
+                            "instructions": "Override the background for this module.",
+                            "return_format": "string"
+                        },
+                        {
+                            "key": "field_featured_section_text_color",
+                            "label": "Section Text Color",
+                            "name": "section_text_color",
+                            "type": "color_picker",
+                            "instructions": "Override the text color for this module.",
+                            "return_format": "string"
+                        }
+                    ]
+                },
+                {
+                    "key": "layout_at_a_glance",
+                    "name": "at_a_glance",
+                    "label": "At a Glance",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_glance_items",
+                            "label": "Items",
+                            "name": "glance_items",
+                            "type": "repeater",
+                            "button_label": "Add Item",
+                            "sub_fields": [
+                                {
+                                    "key": "field_glance_label",
+                                    "label": "Label",
+                                    "name": "glance_label",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "field_glance_url",
+                                    "label": "Anchor / URL",
+                                    "name": "glance_url",
+                                    "type": "text",
+                                    "instructions": "Add an on-page anchor that begins with # to match the target section id."
+                                },
+                                {
+                                    "key": "field_glance_desc",
+                                    "label": "Description",
+                                    "name": "glance_desc",
+                                    "type": "text"
+                                }
+                            ]
+                        },
+                        {
+                            "key": "field_at_a_glance_section_background",
+                            "label": "Section Background",
+                            "name": "section_background",
+                            "type": "color_picker",
+                            "instructions": "Override the background for this module.",
+                            "return_format": "string"
+                        },
+                        {
+                            "key": "field_at_a_glance_section_text_color",
+                            "label": "Section Text Color",
+                            "name": "section_text_color",
+                            "type": "color_picker",
+                            "instructions": "Override the text color for this module.",
+                            "return_format": "string"
+                        }
+                    ]
+                },
+                {
+                    "key": "layout_icon_grid",
+                    "name": "icon_grid",
+                    "label": "Icon Grid",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_icon_grid_title",
+                            "label": "Icon Grid Title",
+                            "name": "icon_grid_title",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_icon_items",
+                            "label": "Icon Items",
+                            "name": "icon_items",
+                            "type": "repeater",
+                            "button_label": "Add Icon",
+                            "sub_fields": [
+                                {
+                                    "key": "field_icon_image",
+                                    "label": "Icon Image",
+                                    "name": "icon_image",
+                                    "type": "image",
+                                    "return_format": "array",
+                                    "preview_size": "thumbnail"
+                                },
+                                {
+                                    "key": "field_icon_label",
+                                    "label": "Icon Label",
+                                    "name": "icon_label",
+                                    "type": "text"
+                                }
+                            ]
+                        },
+                        {
+                            "key": "field_icon_grid_section_background",
+                            "label": "Section Background",
+                            "name": "section_background",
+                            "type": "color_picker",
+                            "instructions": "Override the background for this module.",
+                            "return_format": "string"
+                        },
+                        {
+                            "key": "field_icon_grid_section_text_color",
+                            "label": "Section Text Color",
+                            "name": "section_text_color",
+                            "type": "color_picker",
+                            "instructions": "Override the text color for this module.",
+                            "return_format": "string"
+                        }
+                    ]
+                },
+                {
+                    "key": "layout_chatbot_types",
+                    "name": "chatbot_types",
+                    "label": "Chatbot Types",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_type_section_title",
+                            "label": "Section Title",
+                            "name": "type_section_title",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_type_bg_color",
+                            "label": "Section Background",
+                            "name": "type_bg_color",
+                            "type": "color_picker",
+                            "instructions": "Background color for the chatbot types block.",
+                            "return_format": "string"
+                        },
+                        {
+                            "key": "field_type_font_color",
+                            "label": "Section Text Color",
+                            "name": "type_font_color",
+                            "type": "color_picker",
+                            "instructions": "Text color for the chatbot types block.",
+                            "return_format": "string"
+                        },
+                        {
+                            "key": "field_type_items",
+                            "label": "Type Items",
+                            "name": "type_items",
+                            "type": "repeater",
+                            "button_label": "Add Type",
+                            "sub_fields": [
+                                {
+                                    "key": "field_type_title",
+                                    "label": "Type Title",
+                                    "name": "type_title",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "field_type_desc",
+                                    "label": "Type Description",
+                                    "name": "type_desc",
+                                    "type": "wysiwyg",
+                                    "toolbar": "basic",
+                                    "media_upload": 0
+                                },
+                                {
+                                    "key": "field_type_pros",
+                                    "label": "Pros",
+                                    "name": "type_pros",
+                                    "type": "repeater",
+                                    "button_label": "Add Pro",
+                                    "sub_fields": [
+                                        {
+                                            "key": "field_type_pro_item",
+                                            "label": "Pro",
+                                            "name": "pro_item",
+                                            "type": "text"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "key": "field_type_cons",
+                                    "label": "Cons",
+                                    "name": "type_cons",
+                                    "type": "repeater",
+                                    "button_label": "Add Con",
+                                    "sub_fields": [
+                                        {
+                                            "key": "field_type_con_item",
+                                            "label": "Con",
+                                            "name": "con_item",
+                                            "type": "text"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "key": "field_type_tools",
+                                    "label": "Best Tools",
+                                    "name": "type_tools",
+                                    "type": "repeater",
+                                    "button_label": "Add Tool",
+                                    "sub_fields": [
+                                        {
+                                            "key": "field_type_tool_name",
+                                            "label": "Tool Name",
+                                            "name": "tool_name",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "key": "field_type_tool_link",
+                                            "label": "Tool Link",
+                                            "name": "tool_link",
+                                            "type": "url"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "key": "field_type_best_tools",
+                            "label": "Best Tools",
+                            "name": "best_tools",
+                            "type": "repeater",
+                            "button_label": "Add Tool",
+                            "sub_fields": [
+                                {
+                                    "key": "field_type_best_tool_name",
+                                    "label": "Tool Name",
+                                    "name": "tool_name",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "field_type_best_tool_link",
+                                    "label": "Tool Link",
+                                    "name": "tool_link",
+                                    "type": "url"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "key": "layout_how_it_works",
+                    "name": "how_it_works",
+                    "label": "How It Works",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_how_it_works_title",
+                            "label": "Section Title",
+                            "name": "how_it_works_title",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_how_it_works_intro",
+                            "label": "Intro",
+                            "name": "how_it_works_intro",
+                            "type": "wysiwyg",
+                            "tabs": "all",
+                            "toolbar": "basic",
+                            "media_upload": 0,
+                            "delay": 0
+                        },
+                        {
+                            "key": "field_how_it_works_steps",
+                            "label": "Steps",
+                            "name": "how_it_works_steps",
+                            "type": "repeater",
+                            "button_label": "Add Step",
+                            "sub_fields": [
+                                {
+                                    "key": "field_how_it_works_step_description",
+                                    "label": "Step Description",
+                                    "name": "step_description",
+                                    "type": "wysiwyg"
+                                }
+                            ]
+                        },
+                        {
+                            "key": "field_how_it_works_section_background",
+                            "label": "Section Background",
+                            "name": "section_background",
+                            "type": "color_picker",
+                            "instructions": "Override the background for this module.",
+                            "return_format": "string"
+                        },
+                        {
+                            "key": "field_how_it_works_section_text_color",
+                            "label": "Section Text Color",
+                            "name": "section_text_color",
+                            "type": "color_picker",
+                            "instructions": "Override the text color for this module.",
+                            "return_format": "string"
+                        }
+                    ]
+                },
+                {
+                    "key": "layout_feature_grid",
+                    "name": "feature_grid",
+                    "label": "Feature Grid",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_feature_items",
+                            "label": "Features",
+                            "name": "feature_items",
+                            "type": "repeater",
+                            "button_label": "Add Feature",
+                            "sub_fields": [
+                                {
+                                    "key": "field_feature_icon",
+                                    "label": "Feature Icon",
+                                    "name": "feature_icon",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "field_feature_title",
+                                    "label": "Feature Title",
+                                    "name": "feature_title",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "field_feature_desc",
+                                    "label": "Feature Description",
+                                    "name": "feature_desc",
+                                    "type": "textarea",
+                                    "new_lines": "br"
+                                }
+                            ]
+                        },
+                        {
+                            "key": "field_feature_grid_section_background",
+                            "label": "Section Background",
+                            "name": "section_background",
+                            "type": "color_picker",
+                            "instructions": "Override the background for this module.",
+                            "return_format": "string"
+                        },
+                        {
+                            "key": "field_feature_grid_section_text_color",
+                            "label": "Section Text Color",
+                            "name": "section_text_color",
+                            "type": "color_picker",
+                            "instructions": "Override the text color for this module.",
+                            "return_format": "string"
+                        }
+                    ]
+                },
+                {
+                    "key": "layout_comparison_sections",
+                    "name": "comparison_sections",
+                    "label": "Comparison Sections",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_comparison_sections_flexible",
+                            "label": "Comparison Sections",
+                            "name": "comparison_sections",
+                            "type": "repeater",
+                            "layout": "block",
+                            "button_label": "Add Comparison Section",
+                            "sub_fields": [
+                                {
+                                    "key": "field_comparison_flexible_title",
+                                    "label": "Section Title",
+                                    "name": "comparison_title",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "field_comparison_flexible_intro",
+                                    "label": "Intro Paragraph",
+                                    "name": "comparison_intro",
+                                    "type": "wysiwyg",
+                                    "tabs": "visual",
+                                    "toolbar": "basic",
+                                    "media_upload": 0
+                                },
+                                {
+                                    "key": "field_comparison_flexible_feature_blocks",
+                                    "label": "Feature Blocks",
+                                    "name": "feature_blocks",
+                                    "type": "repeater",
+                                    "layout": "block",
+                                    "button_label": "Add Feature Block",
+                                    "sub_fields": [
+                                        {
+                                            "key": "field_comparison_flexible_feature_title",
+                                            "label": "Feature Title",
+                                            "name": "feature_title",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "key": "field_comparison_flexible_left_product_title",
+                                            "label": "Left Product Title",
+                                            "name": "left_product_title",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "key": "field_comparison_flexible_left_rows",
+                                            "label": "Left Product Rows",
+                                            "name": "left_product_rows",
+                                            "type": "repeater",
+                                            "layout": "table",
+                                            "button_label": "Add Row",
+                                            "sub_fields": [
+                                                {
+                                                    "key": "field_comparison_flexible_left_row_text",
+                                                    "label": "Left Row Text",
+                                                    "name": "left_row_text",
+                                                    "type": "text"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "key": "field_comparison_flexible_right_product_title",
+                                            "label": "Right Product Title",
+                                            "name": "right_product_title",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "key": "field_comparison_flexible_right_rows",
+                                            "label": "Right Product Rows",
+                                            "name": "right_product_rows",
+                                            "type": "repeater",
+                                            "layout": "table",
+                                            "button_label": "Add Row",
+                                            "sub_fields": [
+                                                {
+                                                    "key": "field_comparison_flexible_right_row_text",
+                                                    "label": "Right Row Text",
+                                                    "name": "right_row_text",
+                                                    "type": "text"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "key": "field_comparison_flexible_winner_label",
+                                            "label": "Winner Label",
+                                            "name": "winner_label",
+                                            "type": "text",
+                                            "instructions": "Shown only when the winner link is also provided."
+                                        },
+                                        {
+                                            "key": "field_comparison_flexible_winner_link",
+                                            "label": "Winner Website Link",
+                                            "name": "winner_link",
+                                            "type": "url",
+                                            "instructions": "Shown only when the winner label is also provided."
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "key": "field_comparison_sections_section_background",
+                            "label": "Section Background",
+                            "name": "section_background",
+                            "type": "color_picker",
+                            "instructions": "Override the background for this module.",
+                            "return_format": "string"
+                        },
+                        {
+                            "key": "field_comparison_sections_section_text_color",
+                            "label": "Section Text Color",
+                            "name": "section_text_color",
+                            "type": "color_picker",
+                            "instructions": "Override the text color for this module.",
+                            "return_format": "string"
+                        }
+                    ]
+                },
+                {
+                    "key": "layout_comparison_table",
+                    "name": "comparison_table",
+                    "label": "Comparison Table",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_table_rows",
+                            "label": "Table Rows",
+                            "name": "table_rows",
+                            "type": "repeater",
+                            "button_label": "Add Tool",
+                            "sub_fields": [
+                                {
+                                    "key": "field_tool_name",
+                                    "label": "Tool Name",
+                                    "name": "tool_name",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "field_tool_free",
+                                    "label": "Free Plan",
+                                    "name": "tool_free",
+                                    "type": "true_false",
+                                    "ui": 1
+                                },
+                                {
+                                    "key": "field_tool_ai",
+                                    "label": "AI Support",
+                                    "name": "tool_ai",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "field_tool_best_for",
+                                    "label": "Best For",
+                                    "name": "tool_best_for",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "field_tool_affiliate_url",
+                                    "label": "Affiliate URL",
+                                    "name": "tool_affiliate_url",
+                                    "type": "url"
+                                },
+                                {
+                                    "key": "field_tool_button_text",
+                                    "label": "Button Text",
+                                    "name": "tool_button_text",
+                                    "type": "text"
+                                }
+                            ]
+                        },
+                        {
+                            "key": "field_comparison_table_section_background",
+                            "label": "Section Background",
+                            "name": "section_background",
+                            "type": "color_picker",
+                            "instructions": "Override the background for this module.",
+                            "return_format": "string"
+                        },
+                        {
+                            "key": "field_comparison_table_section_text_color",
+                            "label": "Section Text Color",
+                            "name": "section_text_color",
+                            "type": "color_picker",
+                            "instructions": "Override the text color for this module.",
+                            "return_format": "string"
+                        }
+                    ]
+                },
+                {
+                    "key": "layout_industry_cards",
+                    "name": "industry_cards",
+                    "label": "Industry Cards",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_industry_overall_title",
+                            "label": "Section Title",
+                            "name": "industry_overall_title",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_industry_description",
+                            "label": "Section Description",
+                            "name": "industry_description",
+                            "type": "wysiwyg",
+                            "toolbar": "basic",
+                            "media_upload": 0
+                        },
+                        {
+                            "key": "field_industry_cards_group",
+                            "label": "Industry Cards",
+                            "name": "industry_cards_group",
+                            "type": "repeater",
+                            "button_label": "Add Industry Card",
+                            "sub_fields": [
+                                {
+                                    "key": "field_industry_card_icon",
+                                    "label": "Industry Icon",
+                                    "name": "industry_icon",
+                                    "type": "image",
+                                    "return_format": "array",
+                                    "preview_size": "thumbnail"
+                                },
+                                {
+                                    "key": "field_industry_card_title",
+                                    "label": "Industry Title",
+                                    "name": "industry_title",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "field_industry_card_description",
+                                    "label": "Industry Description",
+                                    "name": "industry_description_card",
+                                    "type": "wysiwyg",
+                                    "toolbar": "basic",
+                                    "media_upload": 0
+                                }
+                            ]
+                        },
+                        {
+                            "key": "field_industry_cards_section_background",
+                            "label": "Section Background",
+                            "name": "section_background",
+                            "type": "color_picker",
+                            "instructions": "Override the background for this module.",
+                            "return_format": "string"
+                        },
+                        {
+                            "key": "field_industry_cards_section_text_color",
+                            "label": "Section Text Color",
+                            "name": "section_text_color",
+                            "type": "color_picker",
+                            "instructions": "Override the text color for this module.",
+                            "return_format": "string"
+                        }
+                    ]
+                },
+                {
+                    "key": "layout_internal_links",
+                    "name": "internal_links",
+                    "label": "Internal Links",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_internal_items",
+                            "label": "Internal Links",
+                            "name": "internal_items",
+                            "type": "repeater",
+                            "button_label": "Add Link",
+                            "sub_fields": [
+                                {
+                                    "key": "field_internal_link_title",
+                                    "label": "Link Title",
+                                    "name": "internal_link_title",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "field_internal_link_url",
+                                    "label": "Link URL",
+                                    "name": "internal_link_url",
+                                    "type": "url"
+                                }
+                            ]
+                        },
+                        {
+                            "key": "field_internal_links_section_background",
+                            "label": "Section Background",
+                            "name": "section_background",
+                            "type": "color_picker",
+                            "instructions": "Override the background for this module.",
+                            "return_format": "string"
+                        },
+                        {
+                            "key": "field_internal_links_section_text_color",
+                            "label": "Section Text Color",
+                            "name": "section_text_color",
+                            "type": "color_picker",
+                            "instructions": "Override the text color for this module.",
+                            "return_format": "string"
+                        }
+                    ]
+                },
+                {
+                    "key": "layout_content_block",
+                    "name": "content_block",
+                    "label": "Content Block",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_cb_heading",
+                            "label": "Heading",
+                            "name": "cb_heading",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_cb_content",
+                            "label": "Content",
+                            "name": "cb_content",
+                            "type": "wysiwyg",
+                            "toolbar": "basic"
+                        },
+                        {
+                            "key": "field_cb_rows",
+                            "label": "Rows",
+                            "name": "cb_rows",
+                            "type": "repeater",
+                            "layout": "row",
+                            "button_label": "Add Row",
+                            "sub_fields": [
+                                {
+                                    "key": "field_cb_column_layout",
+                                    "label": "Column Layout",
+                                    "name": "column_layout",
+                                    "type": "radio",
+                                    "instructions": "Pick which side is the image column. Only that side will reveal background image + fallback title options; the opposite side becomes the text column.",
+                                    "choices": {
+                                        "image_left_text_right": "Image Left / Text Right",
+                                        "text_left_image_right": "Text Left / Image Right"
+                                    },
+                                    "layout": "horizontal",
+                                    "default_value": "image_left_text_right"
+                                },
+                                {
+                                    "key": "field_cb_left_column",
+                                    "label": "Left Column",
+                                    "name": "left_column",
+                                    "type": "group",
+                                    "layout": "row",
+                                    "sub_fields": [
+                                        {
+                                            "key": "field_cb_left_background_image",
+                                            "label": "Background Image",
+                                            "name": "background_image",
+                                            "type": "image",
+                                            "return_format": "array",
+                                            "preview_size": "large",
+                                            "instructions": "Only appears when the left column is set to Image.",
+                                            "conditional_logic": [
+                                                [
+                                                    {
+                                                        "field": "field_cb_column_layout",
+                                                        "operator": "==",
+                                                        "value": "image_left_text_right"
+                                                    }
+                                                ]
+                                            ]
+                                        },
+                                        {
+                                            "key": "field_cb_left_background_color",
+                                            "label": "Background Color",
+                                            "name": "background_color",
+                                            "type": "color_picker",
+                                            "return_format": "string",
+                                            "conditional_logic": [
+                                                [
+                                                    {
+                                                        "field": "field_cb_column_layout",
+                                                        "operator": "==",
+                                                        "value": "image_left_text_right"
+                                                    }
+                                                ]
+                                            ]
+                                        },
+                                        {
+                                            "key": "field_cb_left_centered_title",
+                                            "label": "Centered Title",
+                                            "name": "centered_title",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "key": "field_cb_left_centered_title_color",
+                                            "label": "Centered Title Color",
+                                            "name": "centered_title_color",
+                                            "type": "color_picker",
+                                            "return_format": "string",
+                                            "wrapper": {
+                                                "width": "50"
+                                            }
+                                        },
+                                        {
+                                            "key": "field_cb_left_centered_title_size",
+                                            "label": "Centered Title Font Size (px)",
+                                            "name": "centered_title_font_size",
+                                            "type": "number",
+                                            "append": "px",
+                                            "wrapper": {
+                                                "width": "50"
+                                            }
+                                        },
+                                        {
+                                            "key": "field_cb_left_title_text",
+                                            "label": "Title",
+                                            "name": "title",
+                                            "type": "text",
+                                            "instructions": "Shown when no background image is set and a fallback color is applied.",
+                                            "conditional_logic": [
+                                                [
+                                                    {
+                                                        "field": "field_cb_column_layout",
+                                                        "operator": "==",
+                                                        "value": "image_left_text_right"
+                                                    },
+                                                    {
+                                                        "field": "field_cb_left_background_image",
+                                                        "operator": "==",
+                                                        "value": ""
+                                                    }
+                                                ]
+                                            ]
+                                        },
+                                        {
+                                            "key": "field_cb_left_title_color",
+                                            "label": "Title Color",
+                                            "name": "title_color",
+                                            "type": "color_picker",
+                                            "return_format": "string",
+                                            "wrapper": {
+                                                "width": "25"
+                                            },
+                                            "conditional_logic": [
+                                                [
+                                                    {
+                                                        "field": "field_cb_column_layout",
+                                                        "operator": "==",
+                                                        "value": "image_left_text_right"
+                                                    }
+                                                ]
+                                            ]
+                                        },
+                                        {
+                                            "key": "field_cb_left_title_size",
+                                            "label": "Title Font Size (px)",
+                                            "name": "title_font_size",
+                                            "type": "number",
+                                            "instructions": "Optional. Controls the fallback title size when using the color block instead of an image.",
+                                            "append": "px",
+                                            "conditional_logic": [
+                                                [
+                                                    {
+                                                        "field": "field_cb_column_layout",
+                                                        "operator": "==",
+                                                        "value": ""
+                                                    }
+                                                ]
+                                            ]
+                                        },
+                                        {
+                                            "key": "field_cb_left_title_size",
+                                            "label": "Title Font Size (px)",
+                                            "name": "title_font_size",
+                                            "type": "number",
+                                            "instructions": "Optional. Controls the fallback title size when no background image is set.",
+                                            "append": "px",
+                                            "conditional_logic": [
+                                                [
+                                                    {
+                                                        "field": "field_cb_column_layout",
+                                                        "operator": "==",
+                                                        "value": "image_left_text_right"
+                                                    },
+                                                    {
+                                                        "field": "field_cb_left_background_image",
+                                                        "operator": "==",
+                                                        "value": ""
+                                                    }
+                                                ]
+                                            ]
+                                        },
+                                        {
+                                            "key": "field_cb_left_content",
+                                            "label": "Content",
+                                            "name": "column_content",
+                                            "type": "wysiwyg",
+                                            "toolbar": "basic",
+                                            "conditional_logic": [
+                                                [
+                                                    {
+                                                        "field": "field_cb_column_layout",
+                                                        "operator": "==",
+                                                        "value": "text_left_image_right"
+                                                    }
+                                                ]
+                                            ]
+                                        },
+                                        {
+                                            "key": "field_cb_left_text_color",
+                                            "label": "Text Color",
+                                            "name": "text_color",
+                                            "type": "color_picker",
+                                            "return_format": "string",
+                                            "conditional_logic": [
+                                                [
+                                                    {
+                                                        "field": "field_cb_column_layout",
+                                                        "operator": "==",
+                                                        "value": "text_left_image_right"
+                                                    }
+                                                ]
+                                            ]
+                                        },
+                                        {
+                                            "key": "field_cb_left_link_color",
+                                            "label": "Link Color",
+                                            "name": "link_color",
+                                            "type": "color_picker",
+                                            "return_format": "string",
+                                            "conditional_logic": [
+                                                [
+                                                    {
+                                                        "field": "field_cb_column_layout",
+                                                        "operator": "==",
+                                                        "value": "text_left_image_right"
+                                                    }
+                                                ]
+                                            ]
+                                        },
+                                        {
+                                            "key": "field_cb_left_link_hover_color",
+                                            "label": "Link Hover Color",
+                                            "name": "link_hover_color",
+                                            "type": "color_picker",
+                                            "return_format": "string",
+                                            "conditional_logic": [
+                                                [
+                                                    {
+                                                        "field": "field_cb_column_layout",
+                                                        "operator": "==",
+                                                        "value": "text_left_image_right"
+                                                    }
+                                                ]
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "key": "field_cb_right_column",
+                                    "label": "Right Column",
+                                    "name": "right_column",
+                                    "type": "group",
+                                    "layout": "row",
+                                    "sub_fields": [
+                                        {
+                                            "key": "field_cb_right_background_image",
+                                            "label": "Background Image",
+                                            "name": "background_image",
+                                            "type": "image",
+                                            "return_format": "array",
+                                            "preview_size": "large",
+                                            "instructions": "Only appears when the right column is set to Image.",
+                                            "conditional_logic": [
+                                                [
+                                                    {
+                                                        "field": "field_cb_column_layout",
+                                                        "operator": "==",
+                                                        "value": "text_left_image_right"
+                                                    }
+                                                ]
+                                            ]
+                                        },
+                                        {
+                                            "key": "field_cb_right_background_color",
+                                            "label": "Background Color",
+                                            "name": "background_color",
+                                            "type": "color_picker",
+                                            "return_format": "string",
+                                            "conditional_logic": [
+                                                [
+                                                    {
+                                                        "field": "field_cb_column_layout",
+                                                        "operator": "==",
+                                                        "value": "text_left_image_right"
+                                                    }
+                                                ]
+                                            ]
+                                        },
+                                        {
+                                            "key": "field_cb_right_centered_title",
+                                            "label": "Centered Title",
+                                            "name": "centered_title",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "key": "field_cb_right_centered_title_color",
+                                            "label": "Centered Title Color",
+                                            "name": "centered_title_color",
+                                            "type": "color_picker",
+                                            "return_format": "string",
+                                            "wrapper": {
+                                                "width": "50"
+                                            }
+                                        },
+                                        {
+                                            "key": "field_cb_right_centered_title_size",
+                                            "label": "Centered Title Font Size (px)",
+                                            "name": "centered_title_font_size",
+                                            "type": "number",
+                                            "append": "px",
+                                            "wrapper": {
+                                                "width": "50"
+                                            }
+                                        },
+                                        {
+                                            "key": "field_cb_right_title_text",
+                                            "label": "Title",
+                                            "name": "title",
+                                            "type": "text",
+                                            "instructions": "Shown when no background image is set and a fallback color is applied.",
+                                            "conditional_logic": [
+                                                [
+                                                    {
+                                                        "field": "field_cb_column_layout",
+                                                        "operator": "==",
+                                                        "value": "text_left_image_right"
+                                                    },
+                                                    {
+                                                        "field": "field_cb_right_background_image",
+                                                        "operator": "==",
+                                                        "value": ""
+                                                    }
+                                                ]
+                                            ]
+                                        },
+                                        {
+                                            "key": "field_cb_right_title_color",
+                                            "label": "Title Color",
+                                            "name": "title_color",
+                                            "type": "color_picker",
+                                            "return_format": "string",
+                                            "wrapper": {
+                                                "width": "25"
+                                            },
+                                            "conditional_logic": [
+                                                [
+                                                    {
+                                                        "field": "field_cb_column_layout",
+                                                        "operator": "==",
+                                                        "value": "text_left_image_right"
+                                                    }
+                                                ]
+                                            ]
+                                        },
+                                        {
+                                            "key": "field_cb_right_title_size",
+                                            "label": "Title Font Size (px)",
+                                            "name": "title_font_size",
+                                            "type": "number",
+                                            "instructions": "Optional. Controls the fallback title size when using the color block instead of an image.",
+                                            "append": "px",
+                                            "conditional_logic": [
+                                                [
+                                                    {
+                                                        "field": "field_cb_column_layout",
+                                                        "operator": "==",
+                                                        "value": ""
+                                                    }
+                                                ]
+                                            ]
+                                        },
+                                        {
+                                            "key": "field_cb_right_title_size",
+                                            "label": "Title Font Size (px)",
+                                            "name": "title_font_size",
+                                            "type": "number",
+                                            "instructions": "Optional. Controls the fallback title size when no background image is set.",
+                                            "append": "px",
+                                            "conditional_logic": [
+                                                [
+                                                    {
+                                                        "field": "field_cb_column_layout",
+                                                        "operator": "==",
+                                                        "value": "text_left_image_right"
+                                                    },
+                                                    {
+                                                        "field": "field_cb_right_background_image",
+                                                        "operator": "==",
+                                                        "value": ""
+                                                    }
+                                                ]
+                                            ]
+                                        },
+                                        {
+                                            "key": "field_cb_right_content",
+                                            "label": "Content",
+                                            "name": "column_content",
+                                            "type": "wysiwyg",
+                                            "toolbar": "basic",
+                                            "conditional_logic": [
+                                                [
+                                                    {
+                                                        "field": "field_cb_column_layout",
+                                                        "operator": "==",
+                                                        "value": "image_left_text_right"
+                                                    }
+                                                ]
+                                            ]
+                                        },
+                                        {
+                                            "key": "field_cb_right_text_color",
+                                            "label": "Text Color",
+                                            "name": "text_color",
+                                            "type": "color_picker",
+                                            "return_format": "string",
+                                            "conditional_logic": [
+                                                [
+                                                    {
+                                                        "field": "field_cb_column_layout",
+                                                        "operator": "==",
+                                                        "value": "image_left_text_right"
+                                                    }
+                                                ]
+                                            ]
+                                        },
+                                        {
+                                            "key": "field_cb_right_link_color",
+                                            "label": "Link Color",
+                                            "name": "link_color",
+                                            "type": "color_picker",
+                                            "return_format": "string",
+                                            "conditional_logic": [
+                                                [
+                                                    {
+                                                        "field": "field_cb_column_layout",
+                                                        "operator": "==",
+                                                        "value": "image_left_text_right"
+                                                    }
+                                                ]
+                                            ]
+                                        },
+                                        {
+                                            "key": "field_cb_right_link_hover_color",
+                                            "label": "Link Hover Color",
+                                            "name": "link_hover_color",
+                                            "type": "color_picker",
+                                            "return_format": "string",
+                                            "conditional_logic": [
+                                                [
+                                                    {
+                                                        "field": "field_cb_column_layout",
+                                                        "operator": "==",
+                                                        "value": "image_left_text_right"
+                                                    }
+                                                ]
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "key": "field_content_block_section_background",
+                            "label": "Section Background",
+                            "name": "section_background",
+                            "type": "color_picker",
+                            "instructions": "Override the background for this module.",
+                            "return_format": "string"
+                        },
+                        {
+                            "key": "field_content_block_section_text_color",
+                            "label": "Section Text Color",
+                            "name": "section_text_color",
+                            "type": "color_picker",
+                            "instructions": "Override the text color for this module.",
+                            "return_format": "string"
+                        }
+                    ]
+                },
+                {
+                    "key": "layout_faq_section",
+                    "name": "faq_section",
+                    "label": "FAQ Section",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_faq_title",
+                            "label": "FAQ Title",
+                            "name": "faq_title",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_faq_items",
+                            "label": "FAQ Items",
+                            "name": "faq_items",
+                            "type": "repeater",
+                            "button_label": "Add FAQ",
+                            "sub_fields": [
+                                {
+                                    "key": "field_faq_question",
+                                    "label": "Question",
+                                    "name": "faq_question",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "field_faq_answer",
+                                    "label": "Answer",
+                                    "name": "faq_answer",
+                                    "type": "wysiwyg",
+                                    "toolbar": "basic"
+                                }
+                            ]
+                        },
+                        {
+                            "key": "field_faq_schema_jsonld",
+                            "label": "FAQ Schema JSON-LD (optional)",
+                            "name": "faq_schema_jsonld",
+                            "type": "textarea",
+                            "instructions": "Paste custom FAQPage JSON-LD. Leave empty to auto-generate from FAQ items.",
+                            "rows": 6,
+                            "new_lines": ""
+                        },
+                        {
+                            "key": "field_faq_section_section_background",
+                            "label": "Section Background",
+                            "name": "section_background",
+                            "type": "color_picker",
+                            "instructions": "Override the background for this module.",
+                            "return_format": "string"
+                        },
+                        {
+                            "key": "field_faq_section_section_text_color",
+                            "label": "Section Text Color",
+                            "name": "section_text_color",
+                            "type": "color_picker",
+                            "instructions": "Override the text color for this module.",
+                            "return_format": "string"
+                        }
+                    ]
+                },
+                {
+                    "key": "layout_cta_section",
+                    "name": "cta_section",
+                    "label": "CTA Section",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_footer_cta_title",
+                            "label": "CTA Title",
+                            "name": "footer_cta_title",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_footer_cta_desc",
+                            "label": "CTA Description",
+                            "name": "footer_cta_desc",
+                            "type": "textarea",
+                            "new_lines": "br"
+                        },
+                        {
+                            "key": "field_footer_cta_label",
+                            "label": "CTA Button Label",
+                            "name": "footer_cta_label",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_footer_cta_url",
+                            "label": "CTA Button URL",
+                            "name": "footer_cta_url",
+                            "type": "url"
+                        },
+                        {
+                            "key": "field_cta_section_section_background",
+                            "label": "Section Background",
+                            "name": "section_background",
+                            "type": "color_picker",
+                            "instructions": "Override the background for this module.",
+                            "return_format": "string"
+                        },
+                        {
+                            "key": "field_cta_section_section_text_color",
+                            "label": "Section Text Color",
+                            "name": "section_text_color",
+                            "type": "color_picker",
+                            "instructions": "Override the text color for this module.",
+                            "return_format": "string"
+                        }
+                    ]
+                }
+            ],
+            "button_label": "Add Section"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "post"
+            }
+        ],
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "chatbot_tool"
+            }
+        ]
+    ],
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Flexible article builder for AI chatbot content.",
+    "show_in_rest": 0,
+    "modified": 1766607614
+}

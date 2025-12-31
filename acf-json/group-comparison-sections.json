@@ -1,0 +1,127 @@
+{
+    "key": "group_comparison_sections",
+    "title": "Comparison Sections",
+    "fields": [
+        {
+            "key": "field_comparison_sections",
+            "label": "Comparison Sections",
+            "name": "comparison_sections",
+            "type": "repeater",
+            "layout": "block",
+            "button_label": "Add Comparison Section",
+            "sub_fields": [
+                {
+                    "key": "field_comparison_title",
+                    "label": "Section Title",
+                    "name": "comparison_title",
+                    "type": "text"
+                },
+                {
+                    "key": "field_comparison_intro",
+                    "label": "Intro Paragraph",
+                    "name": "comparison_intro",
+                    "type": "wysiwyg",
+                    "tabs": "visual",
+                    "toolbar": "basic",
+                    "media_upload": 0
+                },
+                {
+                    "key": "field_feature_blocks",
+                    "label": "Feature Blocks",
+                    "name": "feature_blocks",
+                    "type": "repeater",
+                    "layout": "block",
+                    "button_label": "Add Feature Block",
+                    "sub_fields": [
+                        {
+                            "key": "field_feature_title",
+                            "label": "Feature Title",
+                            "name": "feature_title",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_left_product_title",
+                            "label": "Left Product Title",
+                            "name": "left_product_title",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_left_product_rows",
+                            "label": "Left Product Rows",
+                            "name": "left_product_rows",
+                            "type": "repeater",
+                            "layout": "table",
+                            "button_label": "Add Row",
+                            "sub_fields": [
+                                {
+                                    "key": "field_left_row_text",
+                                    "label": "Left Row Text",
+                                    "name": "left_row_text",
+                                    "type": "text"
+                                }
+                            ]
+                        },
+                        {
+                            "key": "field_right_product_title",
+                            "label": "Right Product Title",
+                            "name": "right_product_title",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_right_product_rows",
+                            "label": "Right Product Rows",
+                            "name": "right_product_rows",
+                            "type": "repeater",
+                            "layout": "table",
+                            "button_label": "Add Row",
+                            "sub_fields": [
+                                {
+                                    "key": "field_right_row_text",
+                                    "label": "Right Row Text",
+                                    "name": "right_row_text",
+                                    "type": "text"
+                                }
+                            ]
+                        },
+                        {
+                            "key": "field_winner_label",
+                            "label": "Winner Label",
+                            "name": "winner_label",
+                            "type": "text",
+                            "instructions": "Shown only when the winner link is also provided."
+                        },
+                        {
+                            "key": "field_winner_link",
+                            "label": "Winner Website Link",
+                            "name": "winner_link",
+                            "type": "url",
+                            "instructions": "Shown only when the winner label is also provided."
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "post"
+            }
+        ],
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "chatbot_tool"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "active": true
+}
