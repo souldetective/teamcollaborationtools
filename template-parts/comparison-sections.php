@@ -4,7 +4,7 @@
  *
  * Renders ACF repeater comparison_sections with nested feature blocks.
  *
- * @package aichatbotfree
+ * @package chatbot-theme
  */
 
 $sections            = isset( $args['sections'] ) && is_array( $args['sections'] ) ? $args['sections'] : null;

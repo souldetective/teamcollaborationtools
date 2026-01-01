@@ -2,7 +2,7 @@
 /**
  * Customizer settings for branding and navigation.
  *
- * @package aichatbotfree
+ * @package chatbot-theme
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
