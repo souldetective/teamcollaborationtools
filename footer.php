@@ -5,7 +5,7 @@
             <div class="footer-logo">
                 <?php echo aichatbotfree_get_footer_logo_html(); ?>
             </div>
-            <p class="footer-note"><?php echo esc_html__( 'AIChatBotFree compares free and paid chatbot builders with transparent reviews to help you choose the right tool.', 'aichatbotfree' ); ?></p>
+            <p class="footer-note"><?php echo esc_html__( 'We compare free and paid chatbot builders with transparent reviews to help you choose the right tool.', 'aichatbotfree' ); ?></p>
         </div>
 
         <nav class="footer-column" data-footer-column="about" aria-label="<?php esc_attr_e( 'Footer About Links', 'aichatbotfree' ); ?>">

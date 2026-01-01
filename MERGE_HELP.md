@@ -9,12 +9,9 @@ If the Content Block PR cannot merge due to conflicts, follow these steps locall
 
 2. When conflicts appear in the Content Block assets, prefer the changes from the feature branch ("ours") so the row layout selector, conditional logic, and styling fixes remain intact.
    - Files to prioritize:
-     - `acf-json/group-ai-chatbot-article-builder.json`
-     - `assets/css/style-article-sections.css`
-     - `template-parts/article-sections.php`
-     - `aichatbotfree/acf-json/group-ai-chatbot-article-builder.json`
-     - `aichatbotfree/assets/css/style-article-sections.css`
-     - `aichatbotfree/template-parts/article-sections.php`
+    - `acf-json/group-ai-chatbot-article-builder.json`
+    - `assets/css/style-article-sections.css`
+    - `template-parts/article-sections.php`
 
 3. After resolving conflicts, run `git status` to confirm everything is staged, then commit the resolution:
    - `git add <files>`

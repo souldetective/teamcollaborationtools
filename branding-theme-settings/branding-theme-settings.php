@@ -3,7 +3,7 @@
  * Plugin Name: Branding & Theme Settings
  * Description: Provides a full admin UI to manage global branding colors, typography, layout, buttons/forms, footer links, and advanced options with dynamic CSS output.
  * Version: 1.0.0
- * Author: aichatbotfree
+ * Author: Theme Author
  * License: GPL-2.0+
  */
 

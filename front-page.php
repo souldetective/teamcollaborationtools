@@ -12,7 +12,7 @@ $cta_primary_label      = aichatbotfree_get_field( 'hero_cta_primary_label', $op
 $cta_primary_url        = aichatbotfree_get_field( 'hero_cta_primary_url', $option );
 $cta_secondary_label    = aichatbotfree_get_field( 'hero_cta_secondary_label', $option );
 $cta_secondary_url      = aichatbotfree_get_field( 'hero_cta_secondary_url', $option );
-$hero_reason_title      = aichatbotfree_get_field( 'hero_reason_title', $option, __( 'Why aichatbotfree.net?', 'aichatbotfree' ) );
+$hero_reason_title      = aichatbotfree_get_field( 'hero_reason_title', $option, __( 'Why choose us?', 'aichatbotfree' ) );
 $hero_reason_items      = aichatbotfree_get_field(
     'hero_reason_items',
     $option,
@@ -69,7 +69,7 @@ if ( empty( $hero_reason_items ) ) {
 }
 
 if ( ! $hero_reason_title ) {
-    $hero_reason_title = __( 'Why aichatbotfree.net?', 'aichatbotfree' );
+    $hero_reason_title = __( 'Why choose us?', 'aichatbotfree' );
 }
 
 $tool_highlight = [];

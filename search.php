@@ -1,6 +1,6 @@
 <?php
 /**
- * Search results template for AI Chatbot Free theme.
+ * Search results template for AI Chatbot theme.
  */
 get_header();
 ?>

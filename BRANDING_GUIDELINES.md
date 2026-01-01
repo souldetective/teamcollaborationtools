@@ -1,4 +1,4 @@
-# AIChatBotFree Brand Guidelines
+# Brand Guidelines
 
 ## 1) Brand Personality
 - **Voice & Tone:** Confident, helpful, and practical. Avoid jargon when unnecessary; explain AI and chatbot topics in plain, actionable language.
@@ -104,4 +104,3 @@
 - **Pillars/cards/tables:** Cards rest on Deep Navy/Ultra Light Gray mixes with Electric Blue links and Emerald success badges; comparison table hover states use subtle Electric Blue tint.
 - **Ratings/alerts:** Star ratings and highlight badges lean on Amber/Emerald; error/destructive patterns use Crimson for clarity.
 - **Article sections module:** Accordion headers, tick/cross icons, CTA buttons, and section backgrounds pull from the CSS variables set to the brand palette, so flexible layouts inherit the same Electric Blue/Emerald accents.
-

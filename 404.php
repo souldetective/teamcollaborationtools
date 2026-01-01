@@ -1,6 +1,6 @@
 <?php
 /**
- * Custom 404 template for AI Chatbot Free theme.
+ * Custom 404 template for AI Chatbot theme.
  */
 get_header();
 ?>

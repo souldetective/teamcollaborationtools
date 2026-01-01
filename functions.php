@@ -1,6 +1,6 @@
 <?php
 /**
- * Theme functions for AI Chatbot Free.
+ * Theme functions for the AI Chatbot theme.
  */
 
 if ( ! defined( 'AI_CHATBOTFREE_VERSION' ) ) {
@@ -86,7 +86,7 @@ add_action( 'admin_notices', function () {
     if ( ! function_exists( 'get_field' ) ) {
         $url = esc_url( admin_url( 'plugin-install.php?s=Advanced+Custom+Fields&tab=search&type=term' ) );
 
-        echo '<div class="notice notice-warning"><p>' . wp_kses_post( sprintf( __( 'The AI Chatbot Free theme uses Advanced Custom Fields for homepage options. Please install and activate ACF (Pro recommended) to edit the homepage sections. <a href="%s">Install ACF</a>.', 'aichatbotfree' ), $url ) ) . '</p></div>';
+        echo '<div class="notice notice-warning"><p>' . wp_kses_post( sprintf( __( 'This theme uses Advanced Custom Fields for homepage options. Please install and activate ACF (Pro recommended) to edit the homepage sections. <a href="%s">Install ACF</a>.', 'aichatbotfree' ), $url ) ) . '</p></div>';
 
         return;
     }
@@ -307,7 +307,7 @@ if ( function_exists( 'acf_add_local_field_group' ) ) {
                     'label' => 'Hero Side Card Title',
                     'name'  => 'hero_reason_title',
                     'type'  => 'text',
-                    'default_value' => 'Why aichatbotfree.net?',
+                    'default_value' => 'Why choose us?',
                 ],
                 [
                     'key'   => 'field_hero_reason_items',
