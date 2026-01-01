@@ -610,12 +610,74 @@
                     "display": "block",
                     "sub_fields": [
                         {
+                            "key": "field_comparison_table_header_logo",
+                            "label": "Header: Logo",
+                            "name": "header_logo",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_comparison_table_header_tool_name",
+                            "label": "Header: Tool Name",
+                            "name": "header_tool_name",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_comparison_table_header_free_plan",
+                            "label": "Header: Free Plan",
+                            "name": "header_free_plan",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_comparison_table_header_ai_support",
+                            "label": "Header: AI Support",
+                            "name": "header_ai_support",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_comparison_table_header_best_for",
+                            "label": "Header: Best For",
+                            "name": "header_best_for",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_comparison_table_header_features",
+                            "label": "Header: Features",
+                            "name": "header_features",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_comparison_table_header_pricing",
+                            "label": "Header: Pricing",
+                            "name": "header_pricing",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_comparison_table_header_affiliate_url",
+                            "label": "Header: Affiliate URL",
+                            "name": "header_affiliate_url",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_comparison_table_header_button_text",
+                            "label": "Header: Button Text",
+                            "name": "header_button_text",
+                            "type": "text"
+                        },
+                        {
                             "key": "field_table_rows",
                             "label": "Table Rows",
                             "name": "table_rows",
                             "type": "repeater",
                             "button_label": "Add Tool",
                             "sub_fields": [
+                                {
+                                    "key": "field_tool_logo",
+                                    "label": "Logo",
+                                    "name": "tool_logo",
+                                    "type": "image",
+                                    "return_format": "array",
+                                    "preview_size": "thumbnail"
+                                },
                                 {
                                     "key": "field_tool_name",
                                     "label": "Tool Name",
@@ -639,6 +701,18 @@
                                     "key": "field_tool_best_for",
                                     "label": "Best For",
                                     "name": "tool_best_for",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "field_tool_features",
+                                    "label": "Features",
+                                    "name": "tool_features",
+                                    "type": "textarea"
+                                },
+                                {
+                                    "key": "field_tool_pricing",
+                                    "label": "Pricing",
+                                    "name": "tool_pricing",
                                     "type": "text"
                                 },
                                 {

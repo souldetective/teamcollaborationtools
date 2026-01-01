@@ -289,6 +289,71 @@ label { color: var(--text-primary); font-weight: 600; display: block; margin-bot
 .comparison-feature__winner-link:visited { color: var(--success); }
 .comparison-feature__winner-link:hover { color: var(--primary); }
 
+/* Article comparison table */
+.article-section.comparison-table .comparison-table__table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid var(--border-color, #E2E8F0);
+}
+.article-section.comparison-table .comparison-table__table th,
+.article-section.comparison-table .comparison-table__table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border-color, #E2E8F0);
+  text-align: left;
+  vertical-align: middle;
+  color: var(--text-secondary, #4A5568);
+  font-size: 14px;
+  line-height: 1.35;
+  word-break: normal;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+.article-section.comparison-table .comparison-table__table th {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary, #0B1220);
+  text-transform: none;
+  letter-spacing: normal;
+}
+.article-section.comparison-table .comparison-table__tool-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary, #0B1220);
+}
+.article-section.comparison-table .comparison-table__secondary {
+  font-weight: 400;
+  color: var(--text-secondary, #4A5568);
+}
+.article-section.comparison-table .comparison-table__cell--logo {
+  width: 56px;
+}
+.article-section.comparison-table .comparison-table__logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.article-section.comparison-table .comparison-table__logo-image {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+.article-section.comparison-table .comparison-table__features {
+  margin: 0;
+  padding-left: 16px;
+  color: var(--text-secondary, #4A5568);
+  display: grid;
+  gap: 4px;
+  list-style: disc;
+}
+.article-section.comparison-table .comparison-table__link {
+  color: var(--primary, #004CFF);
+  text-decoration: none;
+  word-break: normal;
+}
+.article-section.comparison-table .comparison-table__link:hover {
+  text-decoration: underline;
+}
+
 .rating { display: inline-flex; align-items: center; gap: 4px; }
 .rating .star { color: var(--warning); font-size: 14px; }
 .rating .star.empty { color: #e5e7eb; }

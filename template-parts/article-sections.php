@@ -508,43 +508,220 @@ if ( ! function_exists( 'aichatbotfree_article_section_style_attr' ) ) {
                 if ( empty( $rows ) ) {
                     break;
                 }
+                $column_labels = [
+                    'logo'              => get_sub_field( 'header_logo' ),
+                    'tool_name'         => get_sub_field( 'header_tool_name' ),
+                    'tool_free'         => get_sub_field( 'header_free_plan' ),
+                    'tool_ai'           => get_sub_field( 'header_ai_support' ),
+                    'tool_best_for'     => get_sub_field( 'header_best_for' ),
+                    'tool_features'     => get_sub_field( 'header_features' ),
+                    'tool_pricing'      => get_sub_field( 'header_pricing' ),
+                    'tool_affiliate_url'=> get_sub_field( 'header_affiliate_url' ),
+                    'tool_button_text'  => get_sub_field( 'header_button_text' ),
+                ];
+                $column_defaults = [
+                    'logo'               => __( 'Logo', 'aichatbotfree' ),
+                    'tool_name'          => __( 'Tool name', 'aichatbotfree' ),
+                    'tool_free'          => __( 'Free plan', 'aichatbotfree' ),
+                    'tool_ai'            => __( 'AI support', 'aichatbotfree' ),
+                    'tool_best_for'      => __( 'Best for', 'aichatbotfree' ),
+                    'tool_features'      => __( 'Features', 'aichatbotfree' ),
+                    'tool_pricing'       => __( 'Pricing', 'aichatbotfree' ),
+                    'tool_affiliate_url' => __( 'Affiliate URL', 'aichatbotfree' ),
+                    'tool_button_text'   => __( 'Button text', 'aichatbotfree' ),
+                ];
+                foreach ( $column_labels as $key => $label ) {
+                    if ( ! $label ) {
+                        $column_labels[ $key ] = $column_defaults[ $key ];
+                    }
+                }
+                $column_order = [
+                    'logo',
+                    'tool_name',
+                    'tool_free',
+                    'tool_ai',
+                    'tool_best_for',
+                    'tool_features',
+                    'tool_pricing',
+                    'tool_affiliate_url',
+                    'tool_button_text',
+                ];
+                $prepared_rows = [];
+                foreach ( $rows as $row ) {
+                    $prepared = [
+                        'logo'              => isset( $row['tool_logo'] ) ? $row['tool_logo'] : null,
+                        'tool_name'         => isset( $row['tool_name'] ) ? $row['tool_name'] : '',
+                        'tool_free'         => array_key_exists( 'tool_free', $row ) ? $row['tool_free'] : null,
+                        'tool_ai'           => isset( $row['tool_ai'] ) ? $row['tool_ai'] : '',
+                        'tool_best_for'     => isset( $row['tool_best_for'] ) ? $row['tool_best_for'] : '',
+                        'tool_features'     => isset( $row['tool_features'] ) ? $row['tool_features'] : '',
+                        'tool_pricing'      => isset( $row['tool_pricing'] ) ? $row['tool_pricing'] : '',
+                        'tool_affiliate_url'=> isset( $row['tool_affiliate_url'] ) ? $row['tool_affiliate_url'] : '',
+                        'tool_button_text'  => isset( $row['tool_button_text'] ) ? $row['tool_button_text'] : '',
+                    ];
+                    $has_content = false;
+                    foreach ( $prepared as $key => $value ) {
+                        if ( 'logo' === $key ) {
+                            $logo_id = is_array( $value ) ? ( $value['ID'] ?? null ) : $value;
+                            if ( $logo_id ) {
+                                $has_content = true;
+                                break;
+                            }
+                            continue;
+                        }
+                        if ( 'tool_free' === $key ) {
+                            if ( null !== $value && '' !== $value ) {
+                                $has_content = true;
+                                break;
+                            }
+                            continue;
+                        }
+                        if ( is_string( $value ) && '' !== trim( $value ) ) {
+                            $has_content = true;
+                            break;
+                        }
+                    }
+                    if ( ! $has_content ) {
+                        continue;
+                    }
+                    $prepared_rows[] = $prepared;
+                }
+                if ( empty( $prepared_rows ) ) {
+                    break;
+                }
+                $column_visibility = array_fill_keys( $column_order, false );
+                foreach ( $prepared_rows as $prepared ) {
+                    foreach ( $column_order as $column_key ) {
+                        $value = $prepared[ $column_key ];
+                        if ( 'logo' === $column_key ) {
+                            $logo_id = is_array( $value ) ? ( $value['ID'] ?? null ) : $value;
+                            if ( $logo_id ) {
+                                $column_visibility[ $column_key ] = true;
+                            }
+                            continue;
+                        }
+                        if ( 'tool_free' === $column_key ) {
+                            if ( null !== $value && '' !== $value ) {
+                                $column_visibility[ $column_key ] = true;
+                            }
+                            continue;
+                        }
+                        if ( is_string( $value ) && '' !== trim( $value ) ) {
+                            $column_visibility[ $column_key ] = true;
+                        }
+                    }
+                }
                 ?>
                 <section class="article-section comparison-table"<?php echo aichatbotfree_article_section_style_attr(); ?>>
                     <div class="section-heading">
                         <h2><?php esc_html_e( 'Comparison Table', 'aichatbotfree' ); ?></h2>
                     </div>
                     <div class="responsive-table">
-                        <table>
+                        <table class="comparison-table__table">
                             <thead>
                                 <tr>
-                                    <th><?php esc_html_e( 'Tool', 'aichatbotfree' ); ?></th>
-                                    <th><?php esc_html_e( 'Free Plan', 'aichatbotfree' ); ?></th>
-                                    <th><?php esc_html_e( 'AI Support', 'aichatbotfree' ); ?></th>
-                                    <th><?php esc_html_e( 'Best For', 'aichatbotfree' ); ?></th>
-                                    <th><?php esc_html_e( 'Action', 'aichatbotfree' ); ?></th>
+                                    <?php foreach ( $column_order as $column_key ) : ?>
+                                        <?php if ( empty( $column_visibility[ $column_key ] ) ) : ?>
+                                            <?php continue; ?>
+                                        <?php endif; ?>
+                                        <th><?php echo esc_html( $column_labels[ $column_key ] ); ?></th>
+                                    <?php endforeach; ?>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ( $rows as $row ) :
-                                    $name   = isset( $row['tool_name'] ) ? $row['tool_name'] : '';
-                                    $is_free = ! empty( $row['tool_free'] );
-                                    $ai     = isset( $row['tool_ai'] ) ? $row['tool_ai'] : '';
-                                    $best   = isset( $row['tool_best_for'] ) ? $row['tool_best_for'] : '';
-                                    $url    = isset( $row['tool_affiliate_url'] ) ? $row['tool_affiliate_url'] : '';
-                                    $btn    = isset( $row['tool_button_text'] ) ? $row['tool_button_text'] : '';
+                                <?php foreach ( $prepared_rows as $prepared ) :
+                                    $logo_data = $prepared['logo'];
+                                    $logo_id   = is_array( $logo_data ) ? ( $logo_data['ID'] ?? null ) : $logo_data;
+                                    $name      = $prepared['tool_name'];
+                                    $is_free   = ( null !== $prepared['tool_free'] && '' !== $prepared['tool_free'] ) ? (bool) $prepared['tool_free'] : null;
+                                    $ai        = $prepared['tool_ai'];
+                                    $best      = $prepared['tool_best_for'];
+                                    $features  = $prepared['tool_features'];
+                                    $pricing   = $prepared['tool_pricing'];
+                                    $url       = $prepared['tool_affiliate_url'];
+                                    $btn       = $prepared['tool_button_text'];
+                                    $feature_lines = [];
+                                    if ( is_string( $features ) && '' !== trim( $features ) ) {
+                                        $feature_lines = preg_split( '/\r\n|\r|\n/', trim( $features ) );
+                                        $feature_lines = array_values( array_filter( array_map( 'trim', $feature_lines ) ) );
+                                    }
                                     ?>
                                     <tr>
-                                        <td data-label="<?php esc_attr_e( 'Tool', 'aichatbotfree' ); ?>"><?php echo esc_html( $name ); ?></td>
-                                        <td data-label="<?php esc_attr_e( 'Free Plan', 'aichatbotfree' ); ?>">
-                                            <?php echo $is_free ? esc_html__( 'Yes', 'aichatbotfree' ) : esc_html__( 'No', 'aichatbotfree' ); ?>
-                                        </td>
-                                        <td data-label="<?php esc_attr_e( 'AI Support', 'aichatbotfree' ); ?>"><?php echo esc_html( $ai ); ?></td>
-                                        <td data-label="<?php esc_attr_e( 'Best For', 'aichatbotfree' ); ?>"><?php echo esc_html( $best ); ?></td>
-                                    <td data-label="<?php esc_attr_e( 'Action', 'aichatbotfree' ); ?>">
-                                        <?php if ( $url && $btn ) : ?>
-                                            <a class="read-review-link cta-text-link" href="<?php echo esc_url( $url ); ?>" rel="nofollow noopener" target="_blank"><?php echo esc_html( $btn ); ?></a>
-                                        <?php endif; ?>
-                                    </td>
+                                        <?php foreach ( $column_order as $column_key ) : ?>
+                                            <?php if ( empty( $column_visibility[ $column_key ] ) ) : ?>
+                                                <?php continue; ?>
+                                            <?php endif; ?>
+                                            <?php if ( 'logo' === $column_key ) : ?>
+                                                <td class="comparison-table__cell comparison-table__cell--logo">
+                                                    <?php if ( $logo_id ) : ?>
+                                                        <span class="comparison-table__logo">
+                                                            <?php echo wp_get_attachment_image( $logo_id, 'thumbnail', false, [ 'class' => 'comparison-table__logo-image' ] ); ?>
+                                                        </span>
+                                                    <?php endif; ?>
+                                                </td>
+                                                <?php continue; ?>
+                                            <?php endif; ?>
+                                            <?php if ( 'tool_name' === $column_key ) : ?>
+                                                <td class="comparison-table__cell comparison-table__cell--name">
+                                                    <span class="comparison-table__tool-name"><?php echo esc_html( $name ); ?></span>
+                                                </td>
+                                                <?php continue; ?>
+                                            <?php endif; ?>
+                                            <?php if ( 'tool_free' === $column_key ) : ?>
+                                                <td class="comparison-table__cell">
+                                                    <?php if ( null !== $is_free ) : ?>
+                                                        <span class="comparison-table__secondary"><?php echo $is_free ? esc_html__( 'Yes', 'aichatbotfree' ) : esc_html__( 'No', 'aichatbotfree' ); ?></span>
+                                                    <?php endif; ?>
+                                                </td>
+                                                <?php continue; ?>
+                                            <?php endif; ?>
+                                            <?php if ( 'tool_ai' === $column_key ) : ?>
+                                                <td class="comparison-table__cell">
+                                                    <span class="comparison-table__secondary"><?php echo esc_html( $ai ); ?></span>
+                                                </td>
+                                                <?php continue; ?>
+                                            <?php endif; ?>
+                                            <?php if ( 'tool_best_for' === $column_key ) : ?>
+                                                <td class="comparison-table__cell">
+                                                    <span class="comparison-table__secondary"><?php echo esc_html( $best ); ?></span>
+                                                </td>
+                                                <?php continue; ?>
+                                            <?php endif; ?>
+                                            <?php if ( 'tool_features' === $column_key ) : ?>
+                                                <td class="comparison-table__cell">
+                                                    <?php if ( ! empty( $feature_lines ) && count( $feature_lines ) > 1 ) : ?>
+                                                        <ul class="comparison-table__features">
+                                                            <?php foreach ( $feature_lines as $line ) : ?>
+                                                                <li><?php echo esc_html( ltrim( $line, "-*• \t" ) ); ?></li>
+                                                            <?php endforeach; ?>
+                                                        </ul>
+                                                    <?php else : ?>
+                                                        <span class="comparison-table__secondary"><?php echo esc_html( $features ); ?></span>
+                                                    <?php endif; ?>
+                                                </td>
+                                                <?php continue; ?>
+                                            <?php endif; ?>
+                                            <?php if ( 'tool_pricing' === $column_key ) : ?>
+                                                <td class="comparison-table__cell">
+                                                    <span class="comparison-table__secondary"><?php echo esc_html( $pricing ); ?></span>
+                                                </td>
+                                                <?php continue; ?>
+                                            <?php endif; ?>
+                                            <?php if ( 'tool_affiliate_url' === $column_key ) : ?>
+                                                <td class="comparison-table__cell">
+                                                    <?php if ( $url ) : ?>
+                                                        <a class="comparison-table__link" href="<?php echo esc_url( $url ); ?>" rel="nofollow noopener" target="_blank"><?php echo esc_html( $url ); ?></a>
+                                                    <?php endif; ?>
+                                                </td>
+                                                <?php continue; ?>
+                                            <?php endif; ?>
+                                            <?php if ( 'tool_button_text' === $column_key ) : ?>
+                                                <td class="comparison-table__cell">
+                                                    <span class="comparison-table__secondary"><?php echo esc_html( $btn ); ?></span>
+                                                </td>
+                                                <?php continue; ?>
+                                            <?php endif; ?>
+                                        <?php endforeach; ?>
                                     </tr>
                                 <?php endforeach; ?>
                             </tbody>
