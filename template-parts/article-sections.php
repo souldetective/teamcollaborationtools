@@ -1035,6 +1035,369 @@ if ( ! function_exists( 'aichatbotfree_article_section_style_attr' ) ) {
                 <?php
                 break;
 
+            case 'tool_shortlist_block':
+                $featured_heading = get_sub_field( 'featured_tools_heading' );
+                $featured_tools   = get_sub_field( 'featured_tools' );
+                $tool_reviews     = get_sub_field( 'tool_reviews' );
+
+                $featured_tools_clean = [];
+
+                if ( ! empty( $featured_tools ) ) {
+                    foreach ( $featured_tools as $featured_tool ) {
+                        $tool_name        = isset( $featured_tool['tool_name'] ) ? trim( $featured_tool['tool_name'] ) : '';
+                        $rating_value     = isset( $featured_tool['rating_value'] ) ? trim( $featured_tool['rating_value'] ) : '';
+                        $primary_cta_text = isset( $featured_tool['primary_cta_text'] ) ? trim( $featured_tool['primary_cta_text'] ) : '';
+                        $primary_cta_url  = isset( $featured_tool['primary_cta_url'] ) ? trim( $featured_tool['primary_cta_url'] ) : '';
+                        $optional_note    = isset( $featured_tool['optional_note'] ) ? trim( $featured_tool['optional_note'] ) : '';
+
+                        if ( ! $tool_name && ! $rating_value && ! $primary_cta_text && ! $primary_cta_url && ! $optional_note ) {
+                            continue;
+                        }
+
+                        $featured_tools_clean[] = [
+                            'tool_name'        => $tool_name,
+                            'rating_value'     => $rating_value,
+                            'primary_cta_text' => $primary_cta_text,
+                            'primary_cta_url'  => $primary_cta_url,
+                            'optional_note'    => $optional_note,
+                        ];
+                    }
+                }
+
+                $tool_reviews_clean = [];
+
+                if ( ! empty( $tool_reviews ) ) {
+                    foreach ( $tool_reviews as $tool_review ) {
+                        $logo             = isset( $tool_review['logo']['ID'] ) ? $tool_review['logo']['ID'] : 0;
+                        $tool_name        = isset( $tool_review['tool_name'] ) ? trim( $tool_review['tool_name'] ) : '';
+                        $best_for         = isset( $tool_review['best_for'] ) ? trim( $tool_review['best_for'] ) : '';
+                        $trial_info       = isset( $tool_review['trial_info'] ) ? $tool_review['trial_info'] : [];
+                        $pricing_summary  = isset( $tool_review['pricing_summary'] ) ? trim( $tool_review['pricing_summary'] ) : '';
+                        $cta_text         = isset( $tool_review['primary_cta_text'] ) ? trim( $tool_review['primary_cta_text'] ) : '';
+                        $cta_url          = isset( $tool_review['primary_cta_url'] ) ? trim( $tool_review['primary_cta_url'] ) : '';
+                        $rating_value     = isset( $tool_review['rating_value'] ) ? trim( $tool_review['rating_value'] ) : '';
+                        $rating_subtext   = isset( $tool_review['rating_subtext'] ) ? trim( $tool_review['rating_subtext'] ) : '';
+
+                        $trial_has_items = false;
+                        if ( ! empty( $trial_info ) ) {
+                            foreach ( $trial_info as $trial_line ) {
+                                if ( ! empty( $trial_line['trial_line'] ) ) {
+                                    $trial_has_items = true;
+                                    break;
+                                }
+                            }
+                        }
+
+                        if ( ! $logo && ! $tool_name && ! $best_for && ! $trial_has_items && ! $pricing_summary && ! $cta_text && ! $cta_url && ! $rating_value && ! $rating_subtext ) {
+                            continue;
+                        }
+
+                        $tool_reviews_clean[] = $tool_review;
+                    }
+                }
+
+                if ( empty( $featured_tools_clean ) && empty( $tool_reviews_clean ) ) {
+                    break;
+                }
+
+                $tool_name_replace = static function( $text, $tool_name ) {
+                    if ( '' === $text ) {
+                        return '';
+                    }
+
+                    if ( $tool_name ) {
+                        return str_replace( '{tool_name}', $tool_name, $text );
+                    }
+
+                    return str_replace( '{tool_name}', 'this tool', $text );
+                };
+                ?>
+                <section class="article-section tool-shortlist-block">
+                    <?php if ( ! empty( $featured_tools_clean ) ) : ?>
+                        <div class="tool-shortlist-block__featured">
+                            <?php if ( $featured_heading ) : ?>
+                                <h2><?php echo esc_html( $featured_heading ); ?></h2>
+                            <?php endif; ?>
+                            <div class="tool-shortlist-block__featured-grid">
+                                <?php foreach ( $featured_tools_clean as $featured_tool ) :
+                                    $cta_text = $featured_tool['primary_cta_text'];
+                                    $cta_url  = $featured_tool['primary_cta_url'];
+                                    ?>
+                                    <article class="tool-shortlist-block__featured-card">
+                                        <?php if ( $featured_tool['tool_name'] ) : ?>
+                                            <p class="tool-shortlist-block__tool-name"><?php echo esc_html( $featured_tool['tool_name'] ); ?></p>
+                                        <?php endif; ?>
+                                        <?php if ( $featured_tool['rating_value'] ) : ?>
+                                            <p class="tool-shortlist-block__rating"><?php echo esc_html( $featured_tool['rating_value'] ); ?></p>
+                                        <?php endif; ?>
+                                        <?php if ( $featured_tool['optional_note'] ) : ?>
+                                            <p class="tool-shortlist-block__meta"><?php echo esc_html( $featured_tool['optional_note'] ); ?></p>
+                                        <?php endif; ?>
+                                        <?php if ( $cta_text && $cta_url ) : ?>
+                                            <a class="tool-shortlist-block__cta" href="<?php echo esc_url( $cta_url ); ?>">
+                                                <?php echo esc_html( $cta_text ); ?>
+                                            </a>
+                                        <?php endif; ?>
+                                    </article>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php if ( ! empty( $tool_reviews_clean ) ) : ?>
+                        <div class="tool-shortlist-block__tools">
+                            <?php foreach ( $tool_reviews_clean as $tool_review ) :
+                                $logo             = isset( $tool_review['logo']['ID'] ) ? $tool_review['logo']['ID'] : 0;
+                                $tool_name        = isset( $tool_review['tool_name'] ) ? trim( $tool_review['tool_name'] ) : '';
+                                $best_for         = isset( $tool_review['best_for'] ) ? trim( $tool_review['best_for'] ) : '';
+                                $trial_info       = isset( $tool_review['trial_info'] ) ? $tool_review['trial_info'] : [];
+                                $pricing_summary  = isset( $tool_review['pricing_summary'] ) ? trim( $tool_review['pricing_summary'] ) : '';
+                                $cta_text         = isset( $tool_review['primary_cta_text'] ) ? trim( $tool_review['primary_cta_text'] ) : '';
+                                $cta_url          = isset( $tool_review['primary_cta_url'] ) ? trim( $tool_review['primary_cta_url'] ) : '';
+                                $rating_value     = isset( $tool_review['rating_value'] ) ? trim( $tool_review['rating_value'] ) : '';
+                                $rating_subtext   = isset( $tool_review['rating_subtext'] ) ? trim( $tool_review['rating_subtext'] ) : '';
+                                $hero_image       = isset( $tool_review['hero_image']['ID'] ) ? $tool_review['hero_image']['ID'] : 0;
+                                $hero_caption     = isset( $tool_review['hero_caption'] ) ? trim( $tool_review['hero_caption'] ) : '';
+                                $intro            = isset( $tool_review['intro'] ) ? $tool_review['intro'] : '';
+                                $why_heading      = isset( $tool_review['why_picked_heading'] ) ? trim( $tool_review['why_picked_heading'] ) : '';
+                                $why_body         = isset( $tool_review['why_picked_body'] ) ? $tool_review['why_picked_body'] : '';
+                                $standout_heading = isset( $tool_review['standout_heading'] ) ? trim( $tool_review['standout_heading'] ) : '';
+                                $standout_features = isset( $tool_review['standout_features'] ) ? $tool_review['standout_features'] : '';
+                                $integrations     = isset( $tool_review['integrations'] ) ? $tool_review['integrations'] : '';
+                                $pros_heading     = isset( $tool_review['pros_cons_heading'] ) ? trim( $tool_review['pros_cons_heading'] ) : '';
+                                $pros             = isset( $tool_review['pros'] ) ? $tool_review['pros'] : [];
+                                $cons             = isset( $tool_review['cons'] ) ? $tool_review['cons'] : [];
+                                $updates_heading  = isset( $tool_review['updates_heading'] ) ? trim( $tool_review['updates_heading'] ) : '';
+                                $update_summary   = isset( $tool_review['update_summary_line'] ) ? trim( $tool_review['update_summary_line'] ) : '';
+                                $update_date      = isset( $tool_review['update_date'] ) ? $tool_review['update_date'] : '';
+                                $update_title     = isset( $tool_review['update_title'] ) ? trim( $tool_review['update_title'] ) : '';
+                                $update_body      = isset( $tool_review['update_body'] ) ? $tool_review['update_body'] : '';
+                                $update_source_text = isset( $tool_review['update_source_text'] ) ? trim( $tool_review['update_source_text'] ) : '';
+                                $update_source_url = isset( $tool_review['update_source_url'] ) ? trim( $tool_review['update_source_url'] ) : '';
+                                $update_image     = isset( $tool_review['update_image']['ID'] ) ? $tool_review['update_image']['ID'] : 0;
+                                $learn_more_heading = isset( $tool_review['learn_more_heading'] ) ? trim( $tool_review['learn_more_heading'] ) : '';
+                                $learn_more_links = isset( $tool_review['learn_more_links'] ) ? $tool_review['learn_more_links'] : [];
+
+                                $trial_lines = [];
+                                if ( ! empty( $trial_info ) ) {
+                                    foreach ( $trial_info as $trial_line ) {
+                                        $line = isset( $trial_line['trial_line'] ) ? trim( $trial_line['trial_line'] ) : '';
+                                        if ( $line ) {
+                                            $trial_lines[] = $line;
+                                        }
+                                    }
+                                }
+
+                                if ( ! $logo && ! $tool_name && ! $best_for && empty( $trial_lines ) && ! $pricing_summary && ! $cta_text && ! $cta_url && ! $rating_value && ! $rating_subtext ) {
+                                    continue;
+                                }
+
+                                $pros_items = [];
+                                if ( ! empty( $pros ) ) {
+                                    foreach ( $pros as $pro ) {
+                                        $item = isset( $pro['pro_item'] ) ? trim( $pro['pro_item'] ) : '';
+                                        if ( $item ) {
+                                            $pros_items[] = $item;
+                                        }
+                                    }
+                                }
+
+                                $cons_items = [];
+                                if ( ! empty( $cons ) ) {
+                                    foreach ( $cons as $con ) {
+                                        $item = isset( $con['con_item'] ) ? trim( $con['con_item'] ) : '';
+                                        if ( $item ) {
+                                            $cons_items[] = $item;
+                                        }
+                                    }
+                                }
+
+                                $has_pros_cons = ! empty( $pros_items ) || ! empty( $cons_items );
+                                $has_updates = (bool) ( $update_summary || $update_date || $update_title || $update_body || $update_source_url || $update_image );
+
+                                $learn_more_items = [];
+                                if ( ! empty( $learn_more_links ) ) {
+                                    foreach ( $learn_more_links as $link ) {
+                                        $link_text = isset( $link['link_text'] ) ? trim( $link['link_text'] ) : '';
+                                        $link_url  = isset( $link['link_url'] ) ? trim( $link['link_url'] ) : '';
+                                        if ( $link_text && $link_url ) {
+                                            $learn_more_items[] = [
+                                                'text' => $link_text,
+                                                'url'  => $link_url,
+                                            ];
+                                        }
+                                    }
+                                }
+                                ?>
+                                <article class="tool-shortlist-block__tool">
+                                    <div class="tool-shortlist-block__summary">
+                                        <?php if ( $logo ) : ?>
+                                            <div class="tool-shortlist-block__logo">
+                                                <?php echo wp_get_attachment_image( $logo, 'thumbnail' ); ?>
+                                            </div>
+                                        <?php endif; ?>
+                                        <div class="tool-shortlist-block__summary-main">
+                                            <?php if ( $tool_name ) : ?>
+                                                <p class="tool-shortlist-block__tool-name"><?php echo esc_html( $tool_name ); ?></p>
+                                            <?php endif; ?>
+                                            <?php if ( $best_for ) : ?>
+                                                <p class="tool-shortlist-block__meta"><?php echo esc_html( $best_for ); ?></p>
+                                            <?php endif; ?>
+                                        </div>
+                                        <?php if ( ! empty( $trial_lines ) ) : ?>
+                                            <div class="tool-shortlist-block__trial">
+                                                <ul>
+                                                    <?php foreach ( $trial_lines as $line ) : ?>
+                                                        <li><?php echo esc_html( $line ); ?></li>
+                                                    <?php endforeach; ?>
+                                                </ul>
+                                            </div>
+                                        <?php endif; ?>
+                                        <?php if ( $pricing_summary ) : ?>
+                                            <p class="tool-shortlist-block__pricing"><?php echo esc_html( $pricing_summary ); ?></p>
+                                        <?php endif; ?>
+                                        <div class="tool-shortlist-block__cta-area">
+                                            <?php if ( $cta_text && $cta_url ) : ?>
+                                                <a class="tool-shortlist-block__cta" href="<?php echo esc_url( $cta_url ); ?>">
+                                                    <?php echo esc_html( $cta_text ); ?>
+                                                </a>
+                                            <?php endif; ?>
+                                            <?php if ( $rating_value ) : ?>
+                                                <p class="tool-shortlist-block__rating"><?php echo esc_html( $rating_value ); ?></p>
+                                            <?php endif; ?>
+                                            <?php if ( $rating_subtext ) : ?>
+                                                <p class="tool-shortlist-block__meta"><?php echo esc_html( $rating_subtext ); ?></p>
+                                            <?php endif; ?>
+                                        </div>
+                                    </div>
+
+                                    <?php if ( $hero_image ) : ?>
+                                        <div class="tool-shortlist-block__divider" aria-hidden="true"></div>
+                                        <figure class="tool-shortlist-block__hero">
+                                            <?php echo wp_get_attachment_image( $hero_image, 'large' ); ?>
+                                            <?php if ( $hero_caption ) : ?>
+                                                <figcaption class="tool-shortlist-block__meta"><?php echo esc_html( $hero_caption ); ?></figcaption>
+                                            <?php endif; ?>
+                                        </figure>
+                                    <?php endif; ?>
+
+                                    <?php if ( $intro ) : ?>
+                                        <div class="tool-shortlist-block__divider" aria-hidden="true"></div>
+                                        <div class="tool-shortlist-block__body">
+                                            <?php echo wp_kses_post( $intro ); ?>
+                                        </div>
+                                    <?php endif; ?>
+
+                                    <?php if ( $why_body ) : ?>
+                                        <div class="tool-shortlist-block__divider" aria-hidden="true"></div>
+                                        <div class="tool-shortlist-block__section">
+                                            <h3><?php echo esc_html( $tool_name_replace( $why_heading ? $why_heading : 'Why I picked {tool_name}', $tool_name ) ); ?></h3>
+                                            <div class="tool-shortlist-block__body">
+                                                <?php echo wp_kses_post( $why_body ); ?>
+                                            </div>
+                                        </div>
+                                    <?php endif; ?>
+
+                                    <?php if ( $standout_features || $integrations ) : ?>
+                                        <div class="tool-shortlist-block__divider" aria-hidden="true"></div>
+                                        <div class="tool-shortlist-block__section">
+                                            <h3><?php echo esc_html( $tool_name_replace( $standout_heading ? $standout_heading : '{tool_name} Standout Features & Integrations', $tool_name ) ); ?></h3>
+                                            <?php if ( $standout_features ) : ?>
+                                                <div class="tool-shortlist-block__body">
+                                                    <?php echo wp_kses_post( $standout_features ); ?>
+                                                </div>
+                                            <?php endif; ?>
+                                            <?php if ( $integrations ) : ?>
+                                                <div class="tool-shortlist-block__body">
+                                                    <?php echo wp_kses_post( $integrations ); ?>
+                                                </div>
+                                            <?php endif; ?>
+                                        </div>
+                                    <?php endif; ?>
+
+                                    <?php if ( $has_pros_cons ) : ?>
+                                        <div class="tool-shortlist-block__divider" aria-hidden="true"></div>
+                                        <div class="tool-shortlist-block__section">
+                                            <h3><?php echo esc_html( $pros_heading ? $pros_heading : 'Pros and cons' ); ?></h3>
+                                            <div class="tool-shortlist-block__pros-cons">
+                                                <?php if ( ! empty( $pros_items ) ) : ?>
+                                                    <div>
+                                                        <p class="tool-shortlist-block__meta"><?php esc_html_e( 'Pros', 'aichatbotfree' ); ?></p>
+                                                        <ul>
+                                                            <?php foreach ( $pros_items as $item ) : ?>
+                                                                <li><?php echo esc_html( $item ); ?></li>
+                                                            <?php endforeach; ?>
+                                                        </ul>
+                                                    </div>
+                                                <?php endif; ?>
+                                                <?php if ( ! empty( $cons_items ) ) : ?>
+                                                    <div>
+                                                        <p class="tool-shortlist-block__meta"><?php esc_html_e( 'Cons', 'aichatbotfree' ); ?></p>
+                                                        <ul>
+                                                            <?php foreach ( $cons_items as $item ) : ?>
+                                                                <li><?php echo esc_html( $item ); ?></li>
+                                                            <?php endforeach; ?>
+                                                        </ul>
+                                                    </div>
+                                                <?php endif; ?>
+                                            </div>
+                                        </div>
+                                    <?php endif; ?>
+
+                                    <?php if ( $has_updates ) : ?>
+                                        <div class="tool-shortlist-block__divider" aria-hidden="true"></div>
+                                        <div class="tool-shortlist-block__section">
+                                            <h3><?php echo esc_html( $tool_name_replace( $updates_heading ? $updates_heading : 'New Product Updates from {tool_name}', $tool_name ) ); ?></h3>
+                                            <?php if ( $update_summary ) : ?>
+                                                <p class="tool-shortlist-block__meta"><?php echo esc_html( $update_summary ); ?></p>
+                                            <?php endif; ?>
+                                            <?php if ( $update_date ) : ?>
+                                                <p class="tool-shortlist-block__meta">
+                                                    <?php echo esc_html( date_i18n( 'F j, Y', strtotime( $update_date ) ) ); ?>
+                                                </p>
+                                            <?php endif; ?>
+                                            <?php if ( $update_title ) : ?>
+                                                <p class="tool-shortlist-block__tool-name"><?php echo esc_html( $update_title ); ?></p>
+                                            <?php endif; ?>
+                                            <?php if ( $update_body ) : ?>
+                                                <div class="tool-shortlist-block__body">
+                                                    <?php echo wp_kses_post( $update_body ); ?>
+                                                </div>
+                                            <?php endif; ?>
+                                            <?php if ( $update_source_url ) : ?>
+                                                <p class="tool-shortlist-block__meta">
+                                                    <a href="<?php echo esc_url( $update_source_url ); ?>">
+                                                        <?php echo esc_html( $update_source_text ? $update_source_text : 'official site' ); ?>
+                                                    </a>
+                                                </p>
+                                            <?php endif; ?>
+                                            <?php if ( $update_image ) : ?>
+                                                <div class="tool-shortlist-block__update-image">
+                                                    <?php echo wp_get_attachment_image( $update_image, 'large' ); ?>
+                                                </div>
+                                            <?php endif; ?>
+                                        </div>
+                                    <?php endif; ?>
+
+                                    <?php if ( ! empty( $learn_more_items ) ) : ?>
+                                        <div class="tool-shortlist-block__divider" aria-hidden="true"></div>
+                                        <div class="tool-shortlist-block__section">
+                                            <h3><?php echo esc_html( $tool_name_replace( $learn_more_heading ? $learn_more_heading : 'LEARN MORE ABOUT {tool_name}:', $tool_name ) ); ?></h3>
+                                            <ul>
+                                                <?php foreach ( $learn_more_items as $item ) : ?>
+                                                    <li><a href="<?php echo esc_url( $item['url'] ); ?>"><?php echo esc_html( $item['text'] ); ?></a></li>
+                                                <?php endforeach; ?>
+                                            </ul>
+                                        </div>
+                                    <?php endif; ?>
+                                </article>
+                            <?php endforeach; ?>
+                        </div>
+                    <?php endif; ?>
+                </section>
+                <?php
+                break;
+
             case 'faq_section':
                 $faq_title = get_sub_field( 'faq_title' );
                 $faq_items = get_sub_field( 'faq_items' );
