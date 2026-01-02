@@ -624,7 +624,17 @@ if ( ! function_exists( 'aichatbotfree_article_section_style_attr' ) ) {
                                         <?php if ( empty( $column_visibility[ $column_key ] ) ) : ?>
                                             <?php continue; ?>
                                         <?php endif; ?>
-                                        <th><?php echo esc_html( $column_labels[ $column_key ] ); ?></th>
+                                        <?php if ( 'logo' === $column_key ) : ?>
+                                            <th class="comparison-table__header comparison-table__header--logo">
+                                                <span class="screen-reader-text"><?php echo esc_html( $column_labels[ $column_key ] ); ?></span>
+                                            </th>
+                                            <?php continue; ?>
+                                        <?php endif; ?>
+                                        <?php if ( 'tool_features' === $column_key ) : ?>
+                                            <th class="comparison-table__header comparison-table__header--features"><?php echo esc_html( $column_labels[ $column_key ] ); ?></th>
+                                            <?php continue; ?>
+                                        <?php endif; ?>
+                                        <th class="comparison-table__header"><?php echo esc_html( $column_labels[ $column_key ] ); ?></th>
                                     <?php endforeach; ?>
                                 </tr>
                             </thead>
@@ -688,7 +698,7 @@ if ( ! function_exists( 'aichatbotfree_article_section_style_attr' ) ) {
                                                 <?php continue; ?>
                                             <?php endif; ?>
                                             <?php if ( 'tool_features' === $column_key ) : ?>
-                                                <td class="comparison-table__cell">
+                                                <td class="comparison-table__cell comparison-table__cell--features">
                                                     <?php if ( ! empty( $feature_lines ) && count( $feature_lines ) > 1 ) : ?>
                                                         <ul class="comparison-table__features">
                                                             <?php foreach ( $feature_lines as $line ) : ?>
